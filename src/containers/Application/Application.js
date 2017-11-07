@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ApplicationProgress from '../../components/app/ApplicationProgress/ApplicationProgress';
 import injectSheet from 'react-jss';
 import { styles } from './Application.styles';
 
@@ -16,11 +15,7 @@ export class Application extends Component {
           <title>Application</title>
         </Helmet>
 
-        <ApplicationProgress />
-
-        <div className={classes.applicationContainer}>
-          {children}
-        </div>
+        <div className={classes.applicationContainer}>{children}</div>
       </div>
     );
   }

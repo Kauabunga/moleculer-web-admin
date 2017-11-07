@@ -6,19 +6,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { HotKeys } from 'react-hotkeys';
 import canUseDOM from 'can-use-dom';
-import NotFound from '../NotFound/NotFound';
-import KickOff from '../KickOff/KickOff';
-import Loan from '../applicationChildren/Loan/Loan';
-import Personal from '../applicationChildren/Personal/Personal';
-import Financial from '../applicationChildren/Financial/Financial';
-import Summary from '../applicationChildren/Summary/Summary';
-import Application from '../Application/Application';
 import injectSheet from 'react-jss';
 import { styles } from './Root.styles';
 
 export class Root extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, children } = this.props;
 
     const handlers = {
       reset: event => {
@@ -37,33 +30,14 @@ export class Root extends Component {
           <title>App</title>
         </Helmet>
 
-        {canUseDOM
-          ? <HotKeys focused={true} keyMap={keyMap} attach={window} handlers={handlers} />
-          : null}
+        {canUseDOM ? (
+          <HotKeys focused={true} keyMap={keyMap} attach={window} handlers={handlers} />
+        ) : null}
 
         <Toolbar />
 
         <div className={classes.appRoot}>
-          <div className={classes.appContainer}>
-            <Switch>
-              <Route exact path="/404" component={NotFound} />
-              <Route exact path="/" component={KickOff} />
-
-              <Route path="/application">
-                <Application>
-                  <Switch>
-                    <Route exact path="/application/loan" component={Loan} />
-                    <Route exact path="/application/personal" component={Personal} />
-                    <Route exact path="/application/financial" component={Financial} />
-                    <Route exact path="/application/summary" component={Summary} />
-                    <Redirect from="/application" to="/application/loan" />
-                  </Switch>
-                </Application>
-              </Route>
-
-              <Redirect from="*" to="/404" />
-            </Switch>
-          </div>
+          <div className={classes.appContainer}>{children}</div>
         </div>
       </div>
     );
