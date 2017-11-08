@@ -1,8 +1,8 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { Application } from './Application';
+import { Nodes } from './Nodes';
 
 it('renders without crashing', () => {
   const renderer = new ShallowRenderer();
-  renderer.render(<Application classes={{}} />);
+  renderer.render(<Nodes />);
 });

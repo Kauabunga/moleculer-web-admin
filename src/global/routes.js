@@ -1,28 +1,18 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import App from '../containers/Root/Root';
-import Application from '../containers/Application/Application';
-import KickOff from '../containers/KickOff/KickOff';
+import Nodes from '../containers/Nodes/Nodes';
 import NotFound from '../containers/NotFound/NotFound';
+import Services from '../containers/Services/Services';
 
 const routes = (
   <App>
     <Switch>
       <Route exact path="/404" component={NotFound} />
-      <Route exact path="/" component={KickOff} />
+      <Route exact path="/nodes" component={Nodes} />
+      <Route exact path="/services" component={Services} />
 
-      <Route path="/application">
-        <Application>
-          <Switch>
-            {/*<Route exact path="/application/loan" component={Loan} />*/}
-            {/*<Route exact path="/application/personal" component={Personal} />*/}
-            {/*<Route exact path="/application/financial" component={Financial} />*/}
-            {/*<Route exact path="/application/summary" component={Summary} />*/}
-            {/*<Redirect from="/application" to="/application/loan" />*/}
-          </Switch>
-        </Application>
-      </Route>
-
+      <Redirect from="/" to="/nodes" />
       <Redirect from="*" to="/404" />
     </Switch>
   </App>

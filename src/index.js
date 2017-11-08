@@ -15,14 +15,7 @@ if (process.env.NODE_ENV === 'production') {
   ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE, { debug: false });
 }
 
-ReactDOM.render(
-  <div>
-    <Provider store={store}>
-      {router}
-    </Provider>
-  </div>,
-  document.getElementById('root'),
-);
+ReactDOM.render(<Provider store={store}>{router}</Provider>, document.getElementById('root'));
 
 // Service Worker registration
 // registerServiceWorker();
